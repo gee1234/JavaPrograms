@@ -151,7 +151,7 @@ class CrammerRule {
 		detY = (row1[0]*((ansCol[1]*row3[2])-(row2[2]*ansCol[2])))-(ansCol[0]*((row2[0]*row3[2])-(row2[2]*row3[0])))+(row1[2]*((row2[0]*ansCol[2])-(ansCol[1]*row3[0])));
 		detZ = (row1[0]*((row2[1]*ansCol[2])-(ansCol[1]*row3[1])))-(row1[1]*((row2[0]*ansCol[2])-(ansCol[1]*row3[0])))+(ansCol[0]*((row2[0]*row3[1])-(row2[1]*row3[0])));
 		
-		System.out.println("This is determinant of your 3x3 matrix: " + detA);
+		System.out.println("This is the determinant of your 3x3 matrix: " + detA);
 		System.out.println(" ");
 		
 		// Final step of Crammers rule
