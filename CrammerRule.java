@@ -7,141 +7,61 @@ import java.util.*;
 class CrammerRule {
 	public static void main(String[] args) {
 		
-		int integer;
+		Scanner input = new Scanner(System.in);
+		long[][] matrix = new long[3][3];
+		long[] answers = new long[3];
 		
-		int[] row1 = new int[3];
-		int row1Counter = 0;
+		// Get matrix of coefficients -D
+		for(int row = 0; row < 3; row++){
+			for(int column = 0; column < 3; column++){
+				System.out.print("Enter the a" + (row+1) + (column+1) + " element of your 3x3 matrix:");
+				matrix[row][column] = input.nextLong();
+				System.out.println();
+			}
+		}
 		
-		int[] row2 = new int[3];
-		int row2Counter = 0;
+		// Get answer column -D
+		for(int row = 0; row < 3; row++){
+			System.out.print("Enter the c" + (row+1) + "1 element of your answer column matrix:");
+			answers[row] = input.nextLong();
+			System.out.println();
+		}
 		
-		int[] row3 = new int[3];
-		int row3Counter = 0;
+		long detA, detX, detY, detZ = 0;
+		detA = detX = detY = detZ = 0;
 		
-		int[] ansCol = new int[3];
-		int ansColCounter = 0;
-		
-		int detA = 0;
-		int detX = 0;
-		int detY = 0;
-		int detZ = 0;
-		
-		// User input variables
-		Scanner firstRow = new Scanner(System.in);
-		Scanner secondRow = new Scanner(System.in);
-		Scanner thirdRow = new Scanner(System.in);
-		Scanner AnswerColumn = new Scanner(System.in);
-		
-		// User inputs the values into the matrix
-		System.out.println("Enter the a11 element of your 3x3 matrix:");
-		integer = firstRow.nextInt();
-		row1[row1Counter] = integer;
-		row1Counter++;
-		System.out.println( );
-		
-		System.out.println("Enter the a12 element of your 3x3 matrix:");
-		integer = firstRow.nextInt();
-		row1[row1Counter] = integer;
-		row1Counter++;
-		System.out.println( );
-		
-		System.out.println("Enter the a13 element of your 3x3 matrix:");
-		integer = firstRow.nextInt();
-		row1[row1Counter] = integer;
-		row1Counter++;
-		System.out.println( );
-
-		System.out.println("Enter the a21 element of your 3x3 matrix:");
-		integer = secondRow.nextInt();
-		row2[row2Counter] = integer;
-		row2Counter++;
-		System.out.println( );
-		
-		System.out.println("Enter the a22 element of your 3x3 matrix:");
-		integer = secondRow.nextInt();
-		row2[row2Counter] = integer;
-		row2Counter++;
-		System.out.println( );
-		
-		System.out.println("Enter the a23 element of your 3x3 matrix:");
-		integer = secondRow.nextInt();
-		row2[row2Counter] = integer;
-		row2Counter++;
-		System.out.println( );
-
-		System.out.println("Enter the a31 element of your 3x3 matrix:");
-		integer = thirdRow.nextInt();
-		row3[row3Counter] = integer;
-		row3Counter++;
-		System.out.println( );
-		
-		System.out.println("Enter the a32 element of your 3x3 matrix:");
-		integer = thirdRow.nextInt();
-		row3[row3Counter] = integer;
-		row3Counter++;
-		System.out.println( );
-		
-		System.out.println("Enter the a33 element of your 3x3 matrix:");
-		integer = thirdRow.nextInt();
-		row3[row3Counter] = integer;
-		row3Counter++;
-		System.out.println( );
-		
-		// User enters values for the Answer Column
-
-		System.out.println("Enter the c11 element of your Answer Column:");
-		integer = AnswerColumn.nextInt();
-		ansCol[ansColCounter] = integer;
-		ansColCounter++;
-		System.out.println( );
-		
-		System.out.println("Enter the c21 element of your Answer Column:");
-		integer = AnswerColumn.nextInt();
-		ansCol[ansColCounter] = integer;
-		ansColCounter++;
-		System.out.println( );
-		
-		System.out.println("Enter the c31 element of your Answer Column:");
-		integer = AnswerColumn.nextInt();
-		ansCol[ansColCounter] = integer;
-		ansColCounter++;
-		System.out.println( );
-		
-		System.out.println("########################### RESULT ###########################");
-
-		System.out.println(" ");
+		System.out.println("########################### RESULT ###########################\n\n");
 		System.out.println("########################### YOUR MATRIX ######################");
 
 		for(int i = 0; i<3; i++){
-			System.out.print("|");
-			System.out.print(row1[i]);
-			System.out.print("|");
-		}
-		
-		System.out.println( );
-
-		for(int j = 0; j<3; j++){
-			System.out.print("|");
-			System.out.print(row2[j]);
-			System.out.print("|");		
-		}
-		
-		System.out.println( );
-
-		for(int k = 0; k<3; k++){
-			System.out.print("|");
-			System.out.print(row3[k]);		
-			System.out.print("|");
+			for(int j = 0; j < 3; j++){
+				System.out.print("|");
+				System.out.print(matrix[i][j]);
+				System.out.print("|");
+			}
+			System.out.println();
 		}
 
-		System.out.println(" ");
-		System.out.println("########################### YOUR ANSWER COLUMN ###############");
+		System.out.println("\n########################### YOUR ANSWER COLUMN ###############");
 		
-		System.out.println("|" + ansCol[0] + "|");
-		System.out.println("|" + ansCol[1] + "|");
-		System.out.println("|" + ansCol[2] + "|");
+		System.out.println("|" + answers[0] + "|");
+		System.out.println("|" + answers[1] + "|");
+		System.out.println("|" + answers[2] + "|");
 		
-		System.out.println("########################### OUTCOME ##########################");
+		System.out.println("\n########################### OUTCOME ##########################");
+		
+		long[] row1 = new long[3];
+		long[] row2 = new long[3];
+		long[] row3 = new long[3];
+		long[] ansCol = new long[3];
+		
+		// Copied original variables into your variable names -D
+		for(int i = 0; i < 3; i++){
+			row1[i] = matrix[0][i];
+			row2[i] = matrix[1][i];
+			row3[i] = matrix[2][i];
+			ansCol[i] = answers[i];
+		}
 		
 		// Determinant calculated by getting the cofactors and multiplying it by their respective 2x2 matrix
 		detA = (row1[0]*((row2[1]*row3[2])-(row2[2]*row3[1])))-(row1[1]*((row2[0]*row3[2])-(row2[2]*row3[0])))+(row1[2]*((row2[0]*row3[1])-(row2[1]*row3[0])));
@@ -154,11 +74,17 @@ class CrammerRule {
 		System.out.println("This is the determinant of your 3x3 matrix: " + detA);
 		System.out.println(" ");
 		
-		// Final step of Crammers rule
-		System.out.print("Solution: ");
-		System.out.print("x = " + detX/detA + ", ");
-		System.out.print("y = " + detY/detA + ", ");
-		System.out.println("z = " + detZ/detA);
+		// Check detA != 0 -D
+		if(detA == 0){
+			System.out.println("Determinent is 0, cannot calculate");
+		} else {
+		
+			// Final step of Crammers rule
+			System.out.print("Solution: ");
+			System.out.print("x = " + detX/detA + ", ");
+			System.out.print("y = " + detY/detA + ", ");
+			System.out.println("z = " + detZ/detA);
+		}
 		
 		System.out.println("##############################################################");
 	}
